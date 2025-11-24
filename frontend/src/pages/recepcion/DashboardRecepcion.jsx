@@ -4,7 +4,14 @@ import Navbar from "../../components/Navbar";
 import "../../styles/dashboardCliente.css";
 
 export default function DashboardRecepcion() {
+  
   const usuario = JSON.parse(localStorage.getItem("usuario"));
+   // RUTA: SOLO RECEPCIÓN PUEDE VER ESTA PANTALLA
+  if (!usuario || usuario.rol !== "recepcion") {
+    window.location.href = "/login";
+    return null;
+  }
+
   const [tab, setTab] = useState("dia");
 
   const [turnos, setTurnos] = useState([]);
@@ -15,7 +22,7 @@ export default function DashboardRecepcion() {
   const hoy = new Date().toISOString().split("T")[0];
 
   // ================================
-  // Cargar MASCOTAS
+  // Cargar TODAS las mascotas
   // ================================
   const cargarMascotas = async () => {
     try {
@@ -64,13 +71,13 @@ export default function DashboardRecepcion() {
   };
 
   // ================================
-  // Obtener MASCOTA completa por ID
+  // Buscar mascota por ID
   // ================================
   const buscarMascota = (mascotaId) =>
     mascotas.find((m) => m.id == mascotaId);
 
   // ================================
-  // Búsqueda general
+  // Buscador
   // ================================
   const buscarTurnos = (texto) => {
     setBusqueda(texto);
@@ -94,7 +101,7 @@ export default function DashboardRecepcion() {
   const turnosHoy = turnos.filter((t) => t.fecha === hoy);
 
   // ================================
-  // Render de mascota
+  // Render mascota asociada
   // ================================
   const renderMascota = (t) => {
     const m = buscarMascota(t.mascotaId);
@@ -121,29 +128,16 @@ export default function DashboardRecepcion() {
       <div className="cliente-container">
         <h1 className="cliente-title">Panel de Recepción</h1>
 
-        {/* Tabs */}
         <div className="cliente-tabs">
-          <button className={tab === "dia" ? "active" : ""} onClick={() => setTab("dia")}>
-            Turnos del día
-          </button>
-
-          <button className={tab === "todos" ? "active" : ""} onClick={() => setTab("todos")}>
-            Todos los turnos
-          </button>
-
-          <button className={tab === "buscar" ? "active" : ""} onClick={() => setTab("buscar")}>
-            Buscar
-          </button>
-
-          <button className={tab === "perfil" ? "active" : ""} onClick={() => setTab("perfil")}>
-            Mi perfil
-          </button>
+          <button className={tab === "dia" ? "active" : ""} onClick={() => setTab("dia")}>Turnos del día</button>
+          <button className={tab === "todos" ? "active" : ""} onClick={() => setTab("todos")}>Todos los turnos</button>
+          <button className={tab === "buscar" ? "active" : ""} onClick={() => setTab("buscar")}>Buscar</button>
+          <button className={tab === "perfil" ? "active" : ""} onClick={() => setTab("perfil")}>Mi perfil</button>
         </div>
 
-        {/* CONTENIDO */}
         <div className="cliente-content">
 
-          {/* --- Turnos del día --- */}
+          {/* Turnos del día */}
           {tab === "dia" && (
             <div className="card">
               <h2>Turnos del día</h2>
@@ -175,7 +169,7 @@ export default function DashboardRecepcion() {
             </div>
           )}
 
-          {/* --- Todos los turnos --- */}
+          {/* TODOS los turnos */}
           {tab === "todos" && (
             <div className="card">
               <h2>Todos los turnos</h2>
@@ -208,7 +202,7 @@ export default function DashboardRecepcion() {
             </div>
           )}
 
-          {/* --- Buscar turnos --- */}
+          {/* Buscar */}
           {tab === "buscar" && (
             <div className="card">
               <h2>Buscar turno</h2>
@@ -237,7 +231,7 @@ export default function DashboardRecepcion() {
             </div>
           )}
 
-          {/* --- Perfil --- */}
+          {/* Perfil */}
           {tab === "perfil" && (
             <div className="card">
               <h2>Mi perfil (Recepción)</h2>
@@ -264,6 +258,7 @@ export default function DashboardRecepcion() {
     </>
   );
 }
+
 
 
 

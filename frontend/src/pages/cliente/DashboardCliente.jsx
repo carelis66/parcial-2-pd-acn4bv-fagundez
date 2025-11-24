@@ -5,6 +5,11 @@ import "../../styles/dashboardCliente.css";
 
 export default function DashboardCliente() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
+    // SOLO CLIENTE PUEDE VER ESTA PANTALLA
+  if (!usuario || usuario.rol !== "cliente") {
+    window.location.href = "/login";
+    return null;
+  }
 
   const [tab, setTab] = useState("perfil");
 
@@ -84,10 +89,9 @@ export default function DashboardCliente() {
         setAlergias("");
         setMedicacion("");
         setNotas("");
-
         cargarMascotas();
       } else {
-        setMensajeMascota(data.mensaje);
+        setMensajeMascota(data.mensaje || "Error al registrar la mascota.");
       }
 
     } catch (error) {
@@ -112,7 +116,7 @@ export default function DashboardCliente() {
   // ==========================
   const cargarTurnos = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/turnos/${usuario.email}`);
+      const res = await fetch(`http://localhost:3001/api/turnos/cliente/${usuario.email}`);
       const data = await res.json();
       setMisTurnos(data);
     } catch (error) {
@@ -122,6 +126,8 @@ export default function DashboardCliente() {
 
   const crearTurno = async (e) => {
     e.preventDefault();
+
+    setMensajeTurno("");
 
     if (!fecha || !hora || !servicio || !mascotaSeleccionada) {
       setMensajeTurno("Completá todos los campos obligatorios.");
@@ -137,8 +143,7 @@ export default function DashboardCliente() {
           fecha,
           hora,
           servicio,
-
-          // AHORA SOLO SE ENVÍA mascotaId
+          // 👇 ESTA ES LA CLAVE: ENVIAR SOLO EL ID
           mascotaId: mascotaSeleccionada
         })
       });
@@ -151,10 +156,9 @@ export default function DashboardCliente() {
         setHora("");
         setServicio("");
         setMascotaSeleccionada("");
-
         cargarTurnos();
       } else {
-        setMensajeTurno(data.mensaje);
+        setMensajeTurno(data.mensaje || "Error al reservar turno.");
       }
 
     } catch (error) {
@@ -271,9 +275,7 @@ export default function DashboardCliente() {
 
               <h3 style={{ marginTop: "30px" }}>Mis Mascotas Registradas</h3>
 
-              {misMascotas.length === 0 && (
-                <p>No tenés mascotas registradas.</p>
-              )}
+              {misMascotas.length === 0 && <p>No tenés mascotas registradas.</p>}
 
               {misMascotas.map((m) => (
                 <div key={m.id} className="turno-item">
@@ -375,4 +377,5 @@ export default function DashboardCliente() {
     </>
   );
 }
+
 
