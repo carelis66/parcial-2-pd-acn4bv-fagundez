@@ -1,5 +1,7 @@
-// Aqui levanto  en puerto 3001
-// Tutas de autenticación y turnos
+// ===============================================
+// Servidor Backend - Puerto 3001
+// Rutas: Autenticación, Turnos, Mascotas, Usuarios
+// ===============================================
 
 const express = require("express");
 const cors = require("cors");
@@ -8,31 +10,35 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const turnosRoutes = require("./routes/turnosRoutes");
 const mascotasRoutes = require("./routes/mascotasRoutes");
-
-
+const usuariosRoutes = require("./routes/usuariosRoutes");   // ⭐ NUEVO
 
 const app = express();
 
-// Middlewares que son globales
+// -----------------------------------------------
+//             MIDDLEWARE GLOBAL
+// -----------------------------------------------
 app.use(cors());
 app.use(express.json());
 
-// ---------------------------
-//      RUTAS PRINCIPALES
-// ---------------------------
+// -----------------------------------------------
+//                 RUTAS PRINCIPALES
+// -----------------------------------------------
 
-// Autenticación para (login, register, forgot password)
+// Autenticación (login / register)
 app.use("/api", authRoutes);
 
-// Turnos (crear, obtener, cancelar)
+// Turnos (crear, listar, cancelar, actualizar)
 app.use("/api", turnosRoutes);
 
-// mascota
+// Usuarios (ADMIN → ABM de usuarios)
+app.use("/api", usuariosRoutes);   // ⭐ NUEVO
+
+// Mascotas (crear, obtener por dueño, eliminar)
 app.use("/mascotas", mascotasRoutes);
 
-// ---------------------------
-//        SERVIDOR
-// ---------------------------
+// -----------------------------------------------
+//                  SERVIDOR
+// -----------------------------------------------
 app.listen(3001, () => {
   console.log("Servidor corriendo en http://localhost:3001");
 });
