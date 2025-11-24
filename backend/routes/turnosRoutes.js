@@ -7,13 +7,17 @@ const {
   cancelarTurno
 } = require("../controllers/turnosController");
 
-// Crear turno
+// -----------------------------------------------------------
+// Rutas de Turnos
+// -----------------------------------------------------------
+
+// Crear un turno (cliente)
 router.post("/turnos", crearTurno);
 
-// Obtener turnos del cliente
+// Obtener turnos de un cliente por email
 router.get("/turnos/:email", obtenerTurnos);
 
-// Cancelar turno
+// Cancelar turno por ID
 router.delete("/turnos/:id", cancelarTurno);
 
 module.exports = router;
