@@ -1,4 +1,8 @@
-// Tabs del panel del cliente: Perfil | Turno | Historial - Formulario para crear un nuevo turno
+// -----------------------------------------------------------
+// Dashboard del Cliente
+// Tabs: Perfil | Pedir Turno | Historial
+// Incluye formulario completo con datos del animal
+// -----------------------------------------------------------
 
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
@@ -6,15 +10,16 @@ import Navbar from "../../components/Navbar";
 import "../../styles/dashboardCliente.css";
 
 export default function DashboardCliente() {
+
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const [tab, setTab] = useState("perfil");
 
-  // Campos del turno
+  // Datos para crear turno
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [servicio, setServicio] = useState("");
 
-  // Campos del animal (OPCIÓN 3 PROFESIONAL)
+  // Datos del animal
   const [nombreAnimal, setNombreAnimal] = useState("");
   const [tipoAnimal, setTipoAnimal] = useState("");
   const [raza, setRaza] = useState("");
@@ -27,32 +32,39 @@ export default function DashboardCliente() {
   const [mensajeTurno, setMensajeTurno] = useState("");
   const [misTurnos, setMisTurnos] = useState([]);
 
+  // Horarios disponibles
   const horarios = [
     "09:00", "10:00", "11:00", "12:00",
     "13:00", "14:00", "15:00", "16:00"
   ];
 
+  // ---------------------------------------------
   // Cargar turnos del cliente
+  // ---------------------------------------------
   const cargarTurnos = async () => {
     try {
       const res = await fetch(`http://localhost:3001/api/turnos/${usuario.email}`);
       const data = await res.json();
       setMisTurnos(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error cargando turnos:", error);
     }
   };
 
   useEffect(() => {
-    if (tab === "historial") cargarTurnos();
+    if (tab === "historial") {
+      cargarTurnos();
+    }
   }, [tab]);
 
-  // Crear turno
+  // ---------------------------------------------
+  // Crear Turno
+  // ---------------------------------------------
   const crearTurno = async (e) => {
     e.preventDefault();
 
     if (!fecha || !hora || !servicio || !nombreAnimal || !tipoAnimal) {
-      setMensajeTurno("Completá al menos los campos obligatorios (*).");
+      setMensajeTurno("⚠️ Completá los campos obligatorios (*)");
       return;
     }
 
@@ -72,16 +84,16 @@ export default function DashboardCliente() {
           peso,
           alergias,
           medicacion,
-          notas
+          notas,
         }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        setMensajeTurno("Turno reservado correctamente ✔");
+        setMensajeTurno("✔ Turno reservado correctamente");
 
-        // Vaciar formulario
+        // Resetear formulario
         setFecha("");
         setHora("");
         setServicio("");
@@ -96,14 +108,16 @@ export default function DashboardCliente() {
 
         cargarTurnos();
       } else {
-        setMensajeTurno(data.mensaje);
+        setMensajeTurno("⚠️ " + data.mensaje);
       }
     } catch (error) {
-      setMensajeTurno("Error al conectar con el servidor.");
+      setMensajeTurno("❌ Error al conectar con el servidor");
     }
   };
 
-  // Cancelar turno
+  // ---------------------------------------------
+  // Cancelar Turno
+  // ---------------------------------------------
   const cancelarTurno = async (id) => {
     try {
       const res = await fetch(`http://localhost:3001/api/turnos/${id}`, {
@@ -112,10 +126,13 @@ export default function DashboardCliente() {
 
       if (res.ok) cargarTurnos();
     } catch (error) {
-      console.error(error);
+      console.error("Error cancelando turno:", error);
     }
   };
 
+  // ---------------------------------------------
+  // Render principal
+  // ---------------------------------------------
   return (
     <>
       <Navbar />
@@ -138,9 +155,10 @@ export default function DashboardCliente() {
           </button>
         </div>
 
+        {/* Contenido */}
         <div className="cliente-content">
 
-          {/* PERFIL */}
+          {/* -------------------------------- PERFIL -------------------------------- */}
           {tab === "perfil" && (
             <div className="card">
               <h2>Datos del Cliente</h2>
@@ -149,14 +167,13 @@ export default function DashboardCliente() {
             </div>
           )}
 
-          {/* PEDIR TURNO */}
+          {/* -------------------------------- PEDIR TURNO -------------------------------- */}
           {tab === "turno" && (
             <div className="card">
               <h2>Pedir un Turno</h2>
 
               <form className="turno-form" onSubmit={crearTurno}>
-                
-                {/* Fecha y Hora */}
+
                 <label>Fecha *</label>
                 <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
 
@@ -176,10 +193,9 @@ export default function DashboardCliente() {
                   <option>Higiene dental</option>
                 </select>
 
-                <hr style={{ border: "1px solid #333" }} />
+                <hr />
 
-                {/* Datos del Animal */}
-                <h3 style={{ color: "gold" }}>Datos del Animal</h3>
+                <h3 className="titulo-animal">Datos del Animal</h3>
 
                 <label>Nombre del animal *</label>
                 <input value={nombreAnimal} onChange={(e) => setNombreAnimal(e.target.value)} />
@@ -208,7 +224,7 @@ export default function DashboardCliente() {
 
                 <label>Notas del dueño</label>
                 <textarea
-                  style={{ background: "#1b1b1b", border: "1px solid #333", padding: "10px", color: "white", borderRadius: "8px" }}
+                  className="textarea-animal"
                   rows="3"
                   value={notas}
                   onChange={(e) => setNotas(e.target.value)}
@@ -218,30 +234,25 @@ export default function DashboardCliente() {
               </form>
 
               {mensajeTurno && (
-                <p style={{ color: "gold", marginTop: "15px", fontWeight: "600" }}>
-                  {mensajeTurno}
-                </p>
+                <p className="mensaje-turno">{mensajeTurno}</p>
               )}
             </div>
           )}
 
-          {/* HISTORIAL */}
+          {/* -------------------------------- HISTORIAL -------------------------------- */}
           {tab === "historial" && (
             <div className="card">
               <h2>Historial de Turnos</h2>
 
-              {misTurnos.length === 0 && <p>No tienes turnos registrados aún.</p>}
+              {misTurnos.length === 0 && <p>No tenés turnos registrados aún.</p>}
 
               {misTurnos.map(t => (
-                <div key={t.id} className="turno-item" style={{
-                  borderBottom: "1px solid #333",
-                  marginBottom: "15px",
-                  paddingBottom: "15px"
-                }}>
+                <div key={t.id} className="turno-item">
                   <p><strong>Fecha:</strong> {t.fecha}</p>
                   <p><strong>Hora:</strong> {t.hora}</p>
                   <p><strong>Servicio:</strong> {t.servicio}</p>
-                  <p><strong>Animal:</strong> {t.nombreAnimal} ({t.tipoAnimal})</p>
+                  <p><strong>Mascota:</strong> {t.nombreAnimal} ({t.tipoAnimal})</p>
+
                   {t.raza && <p><strong>Raza:</strong> {t.raza}</p>}
                   {t.edad && <p><strong>Edad:</strong> {t.edad} años</p>}
                   {t.peso && <p><strong>Peso:</strong> {t.peso} kg</p>}
@@ -249,8 +260,7 @@ export default function DashboardCliente() {
                   {t.medicacion && <p><strong>Medicación:</strong> {t.medicacion}</p>}
                   {t.notas && <p><strong>Notas:</strong> {t.notas}</p>}
 
-                  <button className="btn-gold" style={{ marginTop: "10px" }}
-                    onClick={() => cancelarTurno(t.id)}>
+                  <button className="btn-gold" onClick={() => cancelarTurno(t.id)}>
                     Cancelar turno
                   </button>
                 </div>
@@ -274,3 +284,4 @@ export default function DashboardCliente() {
     </>
   );
 }
+
