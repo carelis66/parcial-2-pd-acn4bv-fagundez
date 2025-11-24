@@ -1,18 +1,1 @@
-[
-  {
-    "id": 1763948421178,
-    "email": "clopez@gmail.com",
-    "fecha": "2026-01-08",
-    "hora": "11:00",
-    "servicio": "Corte de uñas",
-    "estado": "pendiente",
-    "nombreAnimal": "Carlitos",
-    "tipoAnimal": "Perro",
-    "raza": "Doberman",
-    "edad": "5",
-    "peso": "15",
-    "alergias": "No",
-    "medicacion": "No",
-    "notas": "Es miedoso."
-  }
-]
+[]

@@ -10,8 +10,10 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-// Dashboard Cliente 
+// Dashboards
 import DashboardCliente from "./pages/cliente/DashboardCliente";
+import DashboardRecepcion from "./pages/recepcion/DashboardRecepcion";
+// import DashboardAdmin from "./pages/admin/DashboardAdmin";
 
 function App() {
   return (
@@ -28,8 +30,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Dashboard Cliente */}
+        {/* Dashboards */}
         <Route path="/cliente" element={<DashboardCliente />} />
+        <Route path="/recepcion" element={<DashboardRecepcion />} />
+        {/* <Route path="/admin" element={<DashboardAdmin />} /> */}
 
       </Routes>
     </BrowserRouter>
@@ -37,6 +41,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

@@ -1,24 +1,29 @@
-// Validación: evitar turnos duplicados en mismo día/hora
+// =======================================================
+//  TURNOS CONTROLLER – Turno asociado a mascota
+// =======================================================
 
 const fs = require("fs");
 const path = require("path");
 
-// Ruta al archivo JSON
+// Paths a los JSON
 const turnosPath = path.join(__dirname, "../data/turnos.json");
+const mascotasPath = path.join(__dirname, "../data/mascotas.json");
 
-// Leer archivo JSON
+// Leer archivos
 function leerTurnos() {
-  const data = fs.readFileSync(turnosPath, "utf8");
-  return JSON.parse(data);
+  return JSON.parse(fs.readFileSync(turnosPath, "utf8"));
 }
 
-// Guardar archivo JSON
 function guardarTurnos(turnos) {
   fs.writeFileSync(turnosPath, JSON.stringify(turnos, null, 2));
 }
 
+function leerMascotas() {
+  return JSON.parse(fs.readFileSync(mascotasPath, "utf8"));
+}
+
 // =======================================================
-//  POST /api/turnos  -crear turno-
+//  POST /api/turnos  - crear turno -
 // =======================================================
 exports.crearTurno = (req, res) => {
   const {
@@ -33,13 +38,30 @@ exports.crearTurno = (req, res) => {
     peso,
     alergias,
     medicacion,
-    notas
+    notas,
+    mascotaId   // *** NUEVO ***
   } = req.body;
 
   // Validación mínima
   if (!email || !fecha || !hora || !nombreAnimal || !tipoAnimal) {
     return res.status(400).json({
       mensaje: "Faltan datos obligatorios del turno o del animal."
+    });
+  }
+
+  // Validar mascotaId
+  if (!mascotaId) {
+    return res.status(400).json({
+      mensaje: "Debe seleccionar o registrar una mascota antes de pedir el turno."
+    });
+  }
+
+  const mascotas = leerMascotas();
+  const mascotaExiste = mascotas.find(m => m.id == mascotaId);
+
+  if (!mascotaExiste) {
+    return res.status(404).json({
+      mensaje: "La mascota seleccionada no existe."
     });
   }
 
@@ -54,7 +76,7 @@ exports.crearTurno = (req, res) => {
   }
 
   // Validar duplicado día/hora
-  const duplicado = turnos.find((t) => t.fecha === fecha && t.hora === hora);
+  const duplicado = turnos.find(t => t.fecha === fecha && t.hora === hora);
 
   if (duplicado) {
     return res.status(409).json({
@@ -62,7 +84,7 @@ exports.crearTurno = (req, res) => {
     });
   }
 
-  // Crear registro del turno con datos del animal
+  // Crear turno
   const nuevoTurno = {
     id: Date.now(),
     email,
@@ -71,7 +93,7 @@ exports.crearTurno = (req, res) => {
     servicio: servicio || "No especificado",
     estado: "pendiente",
 
-    // Datos del animal
+    mascotaId,        // *** Turno vinculado a mascota ***
     nombreAnimal,
     tipoAnimal,
     raza: raza || "",
@@ -92,35 +114,66 @@ exports.crearTurno = (req, res) => {
 };
 
 // =======================================================
-//  GET /api/turnos/:email   (turnos del cliente)
+//  GET /api/turnos/cliente/:email   - turnos del cliente -
 // =======================================================
-exports.obtenerTurnos = (req, res) => {
+exports.obtenerTurnosCliente = (req, res) => {
   const { email } = req.params;
-
   const turnos = leerTurnos();
 
-  const delUsuario = turnos.filter((t) => t.email === email);
+  const delUsuario = turnos.filter(t => t.email === email);
 
   return res.json(delUsuario);
 };
 
 // =======================================================
-//  DELETE /api/turnos/:id   (cancelar turno)
+//  GET /api/turnos   - todos los turnos (recepción)
+// =======================================================
+exports.obtenerTodosLosTurnos = (req, res) => {
+  const turnos = leerTurnos();
+  return res.json(turnos);
+};
+
+// =======================================================
+//  PATCH /api/turnos/:id   - actualizar estado
+// =======================================================
+exports.actualizarEstadoTurno = (req, res) => {
+  const { id } = req.params;
+  const { estado } = req.body;
+
+  let turnos = leerTurnos();
+  const turno = turnos.find(t => t.id == id);
+
+  if (!turno) {
+    return res.status(404).json({ mensaje: "Turno no encontrado." });
+  }
+
+  turno.estado = estado;
+
+  guardarTurnos(turnos);
+
+  return res.json({
+    mensaje: "Estado actualizado correctamente",
+    turno
+  });
+};
+
+// =======================================================
+//  DELETE /api/turnos/:id   - cancelar turno
 // =======================================================
 exports.cancelarTurno = (req, res) => {
   const { id } = req.params;
 
   let turnos = leerTurnos();
-
-  const existe = turnos.find((t) => t.id == id);
+  const existe = turnos.find(t => t.id == id);
 
   if (!existe) {
     return res.status(404).json({ mensaje: "Turno no encontrado." });
   }
 
-  turnos = turnos.filter((t) => t.id != id);
-
+  turnos = turnos.filter(t => t.id != id);
   guardarTurnos(turnos);
 
   return res.json({ mensaje: "Turno cancelado correctamente." });
 };
+
+
