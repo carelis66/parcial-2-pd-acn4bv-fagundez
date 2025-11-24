@@ -40,7 +40,7 @@ exports.crearMascota = (req, res) => {
 
   const nueva = {
     id: Date.now(),
-    email_dueño: email,
+    email,
     nombre,
     tipo,
     raza: raza || "",
@@ -67,9 +67,18 @@ exports.obtenerMascotas = (req, res) => {
   const { email } = req.params;
 
   const mascotas = leerMascotas();
-  const delDueño = mascotas.filter(m => m.email_dueño === email);
+
+  const delDueño = mascotas.filter(m => m.email === email);
 
   return res.json(delDueño);
+};
+
+// =======================================================
+//  GET /mascotas - Obtener TODAS las mascotas (Recepción)
+// =======================================================
+exports.obtenerTodasLasMascotas = (req, res) => {
+  const mascotas = leerMascotas();
+  return res.json(mascotas);
 };
 
 // =======================================================
@@ -91,4 +100,5 @@ exports.eliminarMascota = (req, res) => {
 
   return res.json({ mensaje: "Mascota eliminada correctamente." });
 };
+
 
