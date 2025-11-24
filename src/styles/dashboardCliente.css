@@ -1,0 +1,124 @@
+.cliente-container {
+  min-height: 100vh;
+  background: #000;
+  color: white;
+  padding: 120px 20px 80px;
+  text-align: center;
+}
+
+/* Título general */
+.cliente-title {
+  color: gold;
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+}
+
+/* Tabs superiores */
+.cliente-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.cliente-tabs button {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 10px 25px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cliente-tabs button:hover {
+  border-color: gold;
+}
+
+.cliente-tabs button.active {
+  background: gold;
+  color: black;
+}
+
+/* Contenedor del contenido */
+.cliente-content {
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Card general */
+.card {
+  background: #111;
+  padding: 30px;
+  border-radius: 14px;
+  border: 1px solid #333;
+  text-align: left;
+  color: white !important;
+}
+
+/* Título dentro de la card */
+.card h2 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+/* Textos dentro de la card */
+.card p,
+.card span,
+.card label {
+  color: #ffffff !important;
+  font-size: 1.1rem;
+}
+
+/* Labels dorados (Nombre:, Email:, etc.) */
+.card strong {
+  color: gold !important;
+}
+
+/* Formularios */
+.turno-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.turno-form input,
+.turno-form select {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Botón dorado */
+.btn-gold {
+  background: gold;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-gold:hover {
+  background: #e0c000;
+}
+
+/* Botón cerrar sesión */
+.btn-logout {
+  background: #6a0000;
+  color: white;
+  margin-top: 40px;
+  padding: 12px 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-logout:hover {
+  background: #8b0000;
+}
+

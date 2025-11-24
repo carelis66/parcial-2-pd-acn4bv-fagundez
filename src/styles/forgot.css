@@ -1,0 +1,71 @@
+.forgot-container {
+  min-height: 90vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.forgot-box {
+  background: #111;
+  padding: 40px;
+  width: 430px;
+  border-radius: 16px;
+  border: 1px solid gold;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.forgot-title {
+  text-align: center;
+  color: gold;
+  font-size: 1.9rem;
+  margin-bottom: 5px;
+}
+
+.forgot-box input {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+}
+
+.forgot-btn {
+  background: gold;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.forgot-btn:hover {
+  background: #e0c000;
+}
+
+.forgot-msg {
+  color: gold;
+  font-weight: 600;
+  text-align: center;
+}
+
+.temp-box {
+  background: #222;
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  color: #e6e6e6;
+  border: 1px solid gold;
+  margin-top: 10px;
+}
+
+.temp-pass {
+  font-size: 1.3rem;
+  color: gold;
+}

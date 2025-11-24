@@ -1,0 +1,52 @@
+/* 🔥 Sección completa con gradiente suave y sin cortes */
+.cards-section {
+  margin-top: 0; /* quita espacio blanco arriba */
+  padding: 80px 0;
+  
+  /* Gradiente más grande y completo */
+  background: linear-gradient(
+    to bottom,
+    #000 0%,
+    #0d0d0d 40%,
+    #1a1a1a 100%
+  );
+}
+
+/* 🔥 Esto asegura que no queden bordes blancos a los lados */
+.cards-section .container,
+.cards-section .row {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* 🔥 Cards elegantes */
+.spa-card {
+  background-color: #111;
+  border-radius: 14px;
+  padding: 25px;
+  height: 100%;
+  color: white;
+  border: 1px solid #2f2f2f;
+  transition: 0.3s ease;
+}
+
+.spa-card:hover {
+  border-color: gold;
+  transform: translateY(-5px);
+}
+
+/* 🟡 Título */
+.card-title {
+  color: gold;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Texto */
+.card-text {
+  color: #ccc;
+  font-size: 1rem;
+}
+

@@ -1,0 +1,21 @@
+.hero-container {
+  position: relative;
+  height: 90vh;
+  background: url("/foto_home.png") center/cover no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: gold;
+  text-shadow: 2px 2px 10px #000;
+}
