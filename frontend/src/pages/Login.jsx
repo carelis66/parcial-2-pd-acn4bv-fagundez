@@ -38,9 +38,20 @@ export default function Login() {
       setMensaje("Inicio de sesión exitoso ✔");
 
       setTimeout(() => {
-        // Por ahora, solo existe dashboard del cliente
-        navigate("/cliente");
-      }, 1200);
+        // ============================
+        // Redirección según ROL
+        // ============================
+        if (data.usuario.rol === "cliente") {
+          navigate("/cliente");
+        } else if (data.usuario.rol === "recepcion") {
+          navigate("/recepcion");
+        } else if (data.usuario.rol === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/"); // fallback por cualquier error
+        }
+      }, 800);
+
     } catch (error) {
       console.error(error);
       setMensaje("Error al conectar con el servidor.");
@@ -85,3 +96,4 @@ export default function Login() {
     </>
   );
 }
+
