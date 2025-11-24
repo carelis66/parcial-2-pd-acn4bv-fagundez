@@ -11,9 +11,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 // Dashboards
+import DashboardAdmin from "./pages/admin/DashboardAdmin"; // cuando lo creemos
 import DashboardCliente from "./pages/cliente/DashboardCliente";
 import DashboardRecepcion from "./pages/recepcion/DashboardRecepcion";
-// import DashboardAdmin from "./pages/admin/DashboardAdmin";
+
+// Protección
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -30,10 +33,33 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Dashboards */}
-        <Route path="/cliente" element={<DashboardCliente />} />
-        <Route path="/recepcion" element={<DashboardRecepcion />} />
-        {/* <Route path="/admin" element={<DashboardAdmin />} /> */}
+        {/* Dashboards con protección */}
+        <Route
+          path="/cliente"
+          element={
+            <ProtectedRoute rol="cliente">
+              <DashboardCliente />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/recepcion"
+          element={
+            <ProtectedRoute rol="recepcion">
+              <DashboardRecepcion />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute rol="admin">
+              <DashboardAdmin />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
     </BrowserRouter>
@@ -41,6 +67,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
