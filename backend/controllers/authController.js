@@ -1,3 +1,7 @@
+// =====================================================
+// REGISTRO DE USUARIO (hash bcrypt + validaciones)
+// =====================================================
+
 const fs = require("fs");
 const path = require("path");
 const bcrypt = require("bcrypt");

@@ -16,7 +16,7 @@ function guardarTurnos(turnos) {
 }
 
 // =======================================================
-//  POST /api/turnos  (crear turno)
+//  POST /api/turnos  -crear turno-
 // =======================================================
 exports.crearTurno = (req, res) => {
   const {
