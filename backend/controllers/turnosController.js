@@ -26,40 +26,19 @@ function leerMascotas() {
 //  POST /api/turnos  - crear turno -
 // =======================================================
 exports.crearTurno = (req, res) => {
-  const {
-    email,
-    fecha,
-    hora,
-    servicio,
-    nombreAnimal,
-    tipoAnimal,
-    raza,
-    edad,
-    peso,
-    alergias,
-    medicacion,
-    notas,
-    mascotaId   // *** NUEVO ***
-  } = req.body;
+  const { email, fecha, hora, servicio, mascotaId } = req.body;
 
   // Validación mínima
-  if (!email || !fecha || !hora || !nombreAnimal || !tipoAnimal) {
+  if (!email || !fecha || !hora || !servicio || !mascotaId) {
     return res.status(400).json({
-      mensaje: "Faltan datos obligatorios del turno o del animal."
-    });
-  }
-
-  // Validar mascotaId
-  if (!mascotaId) {
-    return res.status(400).json({
-      mensaje: "Debe seleccionar o registrar una mascota antes de pedir el turno."
+      mensaje: "Faltan datos obligatorios del turno o no seleccionaste una mascota."
     });
   }
 
   const mascotas = leerMascotas();
-  const mascotaExiste = mascotas.find(m => m.id == mascotaId);
+  const mascota = mascotas.find(m => m.id == mascotaId);
 
-  if (!mascotaExiste) {
+  if (!mascota) {
     return res.status(404).json({
       mensaje: "La mascota seleccionada no existe."
     });
@@ -90,31 +69,31 @@ exports.crearTurno = (req, res) => {
     email,
     fecha,
     hora,
-    servicio: servicio || "No especificado",
+    servicio,
     estado: "pendiente",
 
-    mascotaId,        // *** Turno vinculado a mascota ***
-    nombreAnimal,
-    tipoAnimal,
-    raza: raza || "",
-    edad: edad || "",
-    peso: peso || "",
-    alergias: alergias || "",
-    medicacion: medicacion || "",
-    notas: notas || ""
+    mascotaId: mascota.id,
+    nombreAnimal: mascota.nombre,
+    tipoAnimal: mascota.tipo,
+    raza: mascota.raza,
+    edad: mascota.edad,
+    peso: mascota.peso,
+    alergias: mascota.alergias,
+    medicacion: mascota.medicacion,
+    notas: mascota.notas
   };
 
   turnos.push(nuevoTurno);
   guardarTurnos(turnos);
 
   return res.status(201).json({
-    mensaje: "Turno reservado correctamente",
+    mensaje: "Turno reservado correctamente ✔",
     turno: nuevoTurno
   });
 };
 
 // =======================================================
-//  GET /api/turnos/cliente/:email   - turnos del cliente -
+//  GET /api/turnos/cliente/:email   - turnos del cliente
 // =======================================================
 exports.obtenerTurnosCliente = (req, res) => {
   const { email } = req.params;
@@ -175,5 +154,3 @@ exports.cancelarTurno = (req, res) => {
 
   return res.json({ mensaje: "Turno cancelado correctamente." });
 };
-
-
