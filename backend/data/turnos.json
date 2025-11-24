@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "id": 1764004484889,
+    "email": "llobo@gmail.com",
+    "fecha": "2025-11-26",
+    "hora": "12:00",
+    "servicio": "Corte de uñas",
+    "estado": "pendiente",
+    "mascotaId": 1764002977841,
+    "nombreAnimal": "Lupe",
+    "tipoAnimal": "Perro",
+    "raza": "Frenchie",
+    "edad": "2",
+    "peso": "6",
+    "alergias": "No",
+    "medicacion": "N0",
+    "notas": "Braquicefalica"
+  }
+]

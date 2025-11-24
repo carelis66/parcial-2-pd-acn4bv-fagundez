@@ -7,18 +7,25 @@
     "rol": "cliente"
   },
   {
-    "id": 1763936968793,
-    "nombre": "Robert Lija",
-    "email": "roli@gmail.com",
-    "password": "$2b$10$mpttSmdb1p9ddMJupHIjS./Jw0HleHzqD3FQm8NgDa6wOIeaHkroW",
+    "id": 1764002891908,
+    "nombre": "Laura",
+    "apellido": "Lobo",
+    "email": "llobo@gmail.com",
+    "password": "$2b$10$CdaNjZyHrfjXabiehS34Cu2VFv2RTE5WneqSzoSBabHoKltyHNfX2",
     "rol": "cliente"
   },
   {
-    "id": 1763940098314,
-    "nombre": "Lucia",
-    "apellido": "Barbieri",
-    "email": "lubar@gmail.com",
-    "password": "$2b$10$IyZ/YT/xN/gCvS.gu4clo.X9Tgp.zEqvwUiCG7Pi2T6y/CvY0oJ9i",
-    "rol": "cliente"
+    "id": 1,
+    "nombre": "Admin General",
+    "email": "admin@elite.com",
+    "password": "$2b$10$V3smo8NfY5TUKy4exRwraeKkO2V1Z8/3CAX1ItiX7TtKACRLYkE7e",
+    "rol": "admin"
+  },
+  {
+    "id": 2,
+    "nombre": "Recepcionista",
+    "email": "recepcion@elite.com",
+    "password": "$2b$10$JntkBLbEqPyuFIqwXQ5EL./2zMZgpNgWol.LmUey2B2oYCX98htiC",
+    "rol": "recepcion"
   }
 ]

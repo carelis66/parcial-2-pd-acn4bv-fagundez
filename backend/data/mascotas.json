@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": 1764001233304,
+    "email": "clopez@gmail.com",
+    "nombre": "Carlita",
+    "tipo": "Perro",
+    "raza": "Pincher",
+    "edad": "5",
+    "peso": "5",
+    "alergias": "No",
+    "medicacion": "NO",
+    "notas": "Nada"
+  },
+  {
+    "id": 1764002977841,
+    "email": "llobo@gmail.com",
+    "nombre": "Lupe",
+    "tipo": "Perro",
+    "raza": "Frenchie",
+    "edad": "2",
+    "peso": "6",
+    "alergias": "No",
+    "medicacion": "N0",
+    "notas": "Braquicefalica"
+  },
+  {
+    "id": 1764004043154,
+    "email": "llobo@gmail.com",
+    "nombre": "Lito",
+    "tipo": "Gato",
+    "raza": "Criollo",
+    "edad": "2",
+    "peso": "4",
+    "alergias": "No",
+    "medicacion": "NO",
+    "notas": "NA"
+  }
+]
