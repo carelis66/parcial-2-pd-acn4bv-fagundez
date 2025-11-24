@@ -1,18 +1,18 @@
 [
   {
-    "id": 1763943225782,
+    "id": 1763948421178,
     "email": "clopez@gmail.com",
-    "fecha": "2025-11-29",
-    "hora": "15:00",
-    "servicio": "Peluquería y spa",
-    "estado": "pendiente"
-  },
-  {
-    "id": 1763943313199,
-    "email": "clopez@gmail.com",
-    "fecha": "2025-12-02",
-    "hora": "15:00",
-    "servicio": "Higiene dental",
-    "estado": "pendiente"
+    "fecha": "2026-01-08",
+    "hora": "11:00",
+    "servicio": "Corte de uñas",
+    "estado": "pendiente",
+    "nombreAnimal": "Carlitos",
+    "tipoAnimal": "Perro",
+    "raza": "Doberman",
+    "edad": "5",
+    "peso": "15",
+    "alergias": "No",
+    "medicacion": "No",
+    "notas": "Es miedoso."
   }
 ]
