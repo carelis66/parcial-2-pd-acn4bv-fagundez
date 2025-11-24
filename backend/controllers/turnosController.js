@@ -1,3 +1,5 @@
+// Validación: evitar turnos duplicados en mismo día/hora
+
 const fs = require("fs");
 const path = require("path");
 
