@@ -79,7 +79,7 @@ Entrás ahí para usar la app.
 
 ---
 
-# 🔑 **5. Usuarios de prueba**
+#  **5. Usuarios de prueba**
 
 El archivo `usuarios.json` ya incluye:
 llobo@gmail.com -> 1234
@@ -93,7 +93,7 @@ password: admin123
 rol: admin
 ```
 
-### 🟢 **RECEPCIÓN**
+###  **RECEPCIÓN**
 
 ```
 email: recep@spa.com
@@ -218,7 +218,7 @@ rol: cliente
 
 # **9. Seguridad implementada**
 
-## 🔒 Backend
+##  Backend
 
 * Emails únicos para usuarios
 * Validación de fecha futura
