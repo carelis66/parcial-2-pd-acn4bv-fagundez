@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "usuarioId": 1,
+    "nombre": "Mimi",
+    "tipo": "Perro",
+    "raza": "Caniche"
+  }
+]
