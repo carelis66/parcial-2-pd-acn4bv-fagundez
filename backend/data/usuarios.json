@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1763934892081,
+    "nombre": "Caren Lopez",
+    "email": "clopez@gmail.com",
+    "password": "$2b$10$MN2sCn3.j6lCJnTl3Da4BepekmpxeXSA4RDBVYEsvzuIeVXyu91lq",
+    "rol": "cliente"
+  },
+  {
+    "id": 1763936968793,
+    "nombre": "Robert Lija",
+    "email": "roli@gmail.com",
+    "password": "$2b$10$mpttSmdb1p9ddMJupHIjS./Jw0HleHzqD3FQm8NgDa6wOIeaHkroW",
+    "rol": "cliente"
+  },
+  {
+    "id": 1763940098314,
+    "nombre": "Lucia",
+    "apellido": "Barbieri",
+    "email": "lubar@gmail.com",
+    "password": "$2b$10$IyZ/YT/xN/gCvS.gu4clo.X9Tgp.zEqvwUiCG7Pi2T6y/CvY0oJ9i",
+    "rol": "cliente"
+  }
+]

@@ -1,0 +1,58 @@
+.register-container {
+  min-height: 90vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.register-box {
+  background: #111;
+  padding: 40px;
+  width: 450px;
+  border-radius: 16px;
+  border: 1px solid #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-title {
+  color: gold;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.register-box input {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+}
+
+.register-btn {
+  background: gold;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.register-btn:hover {
+  background: #e0c000;
+}
+
+.register-msg {
+  margin-top: 10px;
+  text-align: center;
+  color: gold;
+  font-weight: 600;
+}

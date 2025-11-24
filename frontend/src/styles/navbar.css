@@ -1,0 +1,40 @@
+.spa-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.spa-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.spa-subtitle {
+  color: #d1cfcf;
+  font-size: 0.9rem;
+  margin-top: -3px;
+}
+
+.nav-link-custom {
+  color: #e3e3e3 !important;
+  font-size: 1.1rem;
+}
+
+.nav-link-custom:hover {
+  color: gold !important;
+}
+
+.btn-gold {
+  background-color: #c9a43c;
+  color: black;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.btn-gold:hover {
+  background-color: #e6c76f;
+  color: black;
+}

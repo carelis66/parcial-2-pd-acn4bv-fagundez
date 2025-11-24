@@ -1,0 +1,48 @@
+.hero-section {
+  width: 100%;
+  height: 90vh; /* un poco más alto y elegante */
+  background: url("/foto_home.png") center top/cover no-repeat;
+  background-color: #000; /* evita fondo blanco */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Overlay completo */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.hero-title {
+  font-family: Georgia, serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  color: #e7e7e7;
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+
+.hero-btn {
+  margin-top: 35px;
+  padding: 12px 35px;
+  font-size: 1.2rem;
+  border-radius: 14px;
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1763943225782,
+    "email": "clopez@gmail.com",
+    "fecha": "2025-11-29",
+    "hora": "15:00",
+    "servicio": "Peluquería y spa",
+    "estado": "pendiente"
+  },
+  {
+    "id": 1763943313199,
+    "email": "clopez@gmail.com",
+    "fecha": "2025-12-02",
+    "hora": "15:00",
+    "servicio": "Higiene dental",
+    "estado": "pendiente"
+  }
+]
