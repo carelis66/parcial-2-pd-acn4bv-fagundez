@@ -7,6 +7,9 @@ const cors = require("cors");
 // Rutas
 const authRoutes = require("./routes/authRoutes");
 const turnosRoutes = require("./routes/turnosRoutes");
+const mascotasRoutes = require("./routes/mascotasRoutes");
+
+
 
 const app = express();
 
@@ -23,6 +26,9 @@ app.use("/api", authRoutes);
 
 // Turnos (crear, obtener, cancelar)
 app.use("/api", turnosRoutes);
+
+// mascota
+app.use("/mascotas", mascotasRoutes);
 
 // ---------------------------
 //        SERVIDOR
